@@ -6,5 +6,5 @@
 
 cmake_minimum_required(VERSION 3.7.2)
 
-add_subdirectory(capdl-loader-app)
+add_subdirectory(${CAPDL_LOADER_APP})
 add_subdirectory(object_sizes)

@@ -14,7 +14,7 @@ macro(capdl_import_project)
     add_subdirectory(${CAPDL_DIR} capdl)
 endmacro()
 
-include(${CAPDL_DIR}/capdl-loader-app/helpers.cmake)
+include(${CAPDL_DIR}/${CAPDL_LOADER_APP}/helpers.cmake)
 include(${CAPDL_DIR}/capDL-tool/capDL-tool.cmake)
 
 include(FindPackageHandleStandardArgs)
