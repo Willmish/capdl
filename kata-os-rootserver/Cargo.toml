@@ -1,9 +1,10 @@
+cargo-features = ["edition2021"]
+
 [package]
 name = "kata-os-rootserver"
 version = "0.1.0"
-edition = "2018"
+edition = "2021"
 build = "build.rs"
-resolver = "2"
 
 [build-dependencies]
 sel4-config = { path = "../../processmanager/apps/system/components/kata-os-common/src/sel4-config" }
