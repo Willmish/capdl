@@ -213,7 +213,7 @@ pub fn main() {
     // has many VSpace roots.
     static mut HEAP_MEMORY: [u8; 4096] = [0; 4096];
     unsafe {
-        allocator::ALLOCATOR.init(HEAP_MEMORY.as_mut_ptr() as usize, HEAP_MEMORY.len());
+        allocator::ALLOCATOR.init(HEAP_MEMORY.as_mut_ptr(), HEAP_MEMORY.len());
         trace!(
             "setup heap: start_addr {:p} size {}",
             HEAP_MEMORY.as_ptr(),
