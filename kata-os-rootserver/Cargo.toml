@@ -24,6 +24,8 @@ sel4-config = { path = "../../kata/apps/system/components/kata-os-common/src/sel
 
 [features]
 default = []
+CONFIG_PLAT_BCM2837 = []
+CONFIG_PLAT_SHODAN = []
 # Used by sel4-config to extract kernel config
 CONFIG_PRINTING = []
 # Log level is Info unless LOG_DEBUG or LOG_TRACE are specified
