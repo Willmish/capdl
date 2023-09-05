@@ -23,10 +23,19 @@ build = "build.rs"
 sel4-config = { path = "../../cantrip/apps/system/components/cantrip-os-common/src/sel4-config" }
 
 [features]
-default = ["LOG_INFO"]
-CONFIG_PLAT_BCM2837 = []
-CONFIG_PLAT_SHODAN = []
-CONFIG_PLAT_NEXUS = []
+default = [
+    "LOG_INFO",
+    "model/CONFIG_CAPDL_SHARED_FRAMES",
+]
+fill_from_cpio = [
+    "model/CONFIG_CAPDL_LOADER_FILL_FROM_CPIO",
+]
+fill_from_sec = [
+    "model/CONFIG_CAPDL_LOADER_FILL_FROM_SEC",
+]
+CONFIG_PLAT_BCM2837 = ["fill_from_cpio"]
+CONFIG_PLAT_SHODAN = ["fill_from_cpio"]
+CONFIG_PLAT_NEXUS = ["fill_from_cpio"]
 # Used by sel4-config to extract kernel config
 CONFIG_PRINTING = []
 CONFIG_DEBUG_BUILD = []
@@ -37,18 +46,16 @@ LOG_INFO = ["log/release_max_level_info"]
 LOG_DEBUG = ["log/release_max_level_debug"]
 LOG_TRACE = ["log/release_max_level_trace"]
 
+[dependencies]
+cantrip-os-common = { path = "../../cantrip/apps/system/components/cantrip-os-common", default-features = false }
+capdl = { path = "../../cantrip/apps/system/components/cantrip-os-common/src/capdl" }
+cfg-if = "1.0"
+core2 = { version = "0.3", default-features = false }
+log = "0.4"
+model = { path = "../../cantrip/apps/system/components/cantrip-os-common/src/model" }
+static_assertions = "1.1"
+
 [lib]
 name = "cantrip_os_rootserver"
 path = "src/lib.rs"
 crate-type = ["staticlib"]
-
-[dependencies.cantrip-os-common]
-default-features = false
-features = ["capdl_support", "logger_support"]
-path = "../../cantrip/apps/system/components/cantrip-os-common"
-
-[dependencies]
-cfg-if = "1.0"
-core2 = { version = "0.3", default-features = false }
-log = "0.4"
-static_assertions = "1.1"
