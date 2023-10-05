@@ -35,7 +35,7 @@ fill_from_sec = [
 ]
 CONFIG_PLAT_BCM2837 = ["fill_from_cpio"]
 CONFIG_PLAT_SHODAN = ["fill_from_cpio"]
-CONFIG_PLAT_NEXUS = ["fill_from_cpio"]
+CONFIG_PLAT_NEXUS = ["fill_from_sec"]
 # Used by sel4-config to extract kernel config
 CONFIG_PRINTING = []
 CONFIG_DEBUG_BUILD = []
