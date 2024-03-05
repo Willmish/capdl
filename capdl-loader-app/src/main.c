@@ -545,7 +545,7 @@ static int find_device_object(seL4_Word paddr, seL4_Word type, int size_bits, se
                                                 seL4_CapInitThreadCNode, 0, 0, free_slot + 2, 1);
                     ZF_LOGF_IFERR(error, "");
                     addr = seL4_ARCH_Page_GetAddress(free_slot + 2);
-                    error = seL4_CNode_Delete(seL4_CapInitThreadCNode, free_slot + 2, CONFIG_WORD_SIZE);
+                    error = seL4_CNode_Delete(seL4_CapInitThreadCNode, free_slot + 2, CONFIG_WORD_SIZE).error;
                     ZF_LOGF_IFERR(error, "");
                 } else {
                     addr = seL4_ARCH_Page_GetAddress(free_slot);
@@ -555,7 +555,7 @@ static int find_device_object(seL4_Word paddr, seL4_Word type, int size_bits, se
                     /* nailed it */
                     /* delete any holding cap */
                     if (hold_slot) {
-                        error = seL4_CNode_Delete(seL4_CapInitThreadCNode, hold_slot, CONFIG_WORD_SIZE);
+                        error = seL4_CNode_Delete(seL4_CapInitThreadCNode, hold_slot, CONFIG_WORD_SIZE).error;
                         ZF_LOGF_IFERR(error, "");
                     }
                     return 0;
@@ -564,7 +564,7 @@ static int find_device_object(seL4_Word paddr, seL4_Word type, int size_bits, se
 
                 /* if we are currently using a hold slot we can just delete the cap, otherwise start the hold */
                 if (hold_slot) {
-                    error = seL4_CNode_Delete(seL4_CapInitThreadCNode, free_slot, CONFIG_WORD_SIZE);
+                    error = seL4_CNode_Delete(seL4_CapInitThreadCNode, free_slot, CONFIG_WORD_SIZE).error;
                     ZF_LOGF_IFERR(error, "");
                 } else {
                     hold_slot = free_slot + 1;
